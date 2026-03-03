@@ -6,7 +6,7 @@ import ProjectGrid from './ProjectGrid';
 
 const Dashboard = () => {
   const { user, signOut } = useAuthenticator();
-  const [selectedSection, setSelectedSection] = useState('all');
+  const [selectedSection] = useState('all');
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   return (

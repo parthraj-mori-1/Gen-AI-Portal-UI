@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard';
+import ProjectModal from './ProjectModal';
 import { FolderOpen, Heart, Database } from 'lucide-react';
 
 const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
   const [activeSection, setActiveSection] = useState('all');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleMouseEnter = () => {
     onSidebarToggle(true);
@@ -51,95 +52,67 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
     // Healthcare Projects
     {
       id: 1,
-      title: 'Medical Diagnosis AI',
-      description: 'Advanced medical imaging analysis and diagnosis assistance system for healthcare professionals.',
+      title: 'Healthcare Referral',
+      description: 'Automated home healthcare referral document processing with intelligent data extraction.',
       section: 'healthcare',
       status: 'active',
-      url: 'https://medical-ai.company.com',
-      lastUpdated: '5 hours ago',
-      members: 12,
-      tags: ['Medical', 'Diagnosis', 'Imaging']
+      url: '/healthcare/referral',
+      lastUpdated: '2 hours ago',
+      members: 8,
+      tags: ['Healthcare', 'Processing', 'Automation'],
+      previewImages: ['/Healthcare_ui.png', '/Healthcare-response.png']
     },
-    {
-      id: 2,
-      title: 'Patient Care Assistant',
-      description: 'Intelligent patient care management system with predictive analytics for better health outcomes.',
-      section: 'healthcare',
-      status: 'active',
-      url: 'https://patient-care.company.com',
-      lastUpdated: '1 hour ago',
-      members: 7,
-      tags: ['Patient Care', 'Analytics', 'Health']
-    },
-    {
-      id: 3,
-      title: 'Drug Discovery Platform',
-      description: 'AI-accelerated drug discovery and development platform for pharmaceutical research.',
-      section: 'healthcare',
-      status: 'development',
-      url: 'https://drug-discovery.company.com',
-      lastUpdated: '2 days ago',
-      members: 15,
-      tags: ['Drug Discovery', 'Research', 'Pharma']
-    },
-
     // Data Extraction Projects
     {
-      id: 4,
-      title: 'Document Intelligence',
-      description: 'Intelligent document processing and data extraction from various file formats and sources.',
-      section: 'data-extraction',
-      status: 'active',
-      url: 'https://doc-intel.company.com',
-      lastUpdated: '4 hours ago',
-      members: 6,
-      tags: ['Document Processing', 'OCR', 'Data Mining']
-    },
-    {
       id: 5,
-      title: 'Web Data Harvester',
-      description: 'Automated web scraping and data extraction platform with intelligent content recognition.',
+      title: 'Smart Documents Processing',
+      description: 'AI-powered document analysis, validation, and automated application processing with real-time dashboard.',
       section: 'data-extraction',
       status: 'active',
-      url: 'https://web-harvester.company.com',
-      lastUpdated: '30 minutes ago',
-      members: 9,
-      tags: ['Web Scraping', 'Data Collection', 'Automation']
+      url: '/data-extraction/smart-documents',
+      lastUpdated: '1 hour ago',
+      members: 8,
+      tags: ['AI Processing', 'Validation', 'Document Analysis', 'Dashboard'],
+      previewImages: ['/Smart-document.png', '/Smart-document-1.png']
     },
-    {
-      id: 6,
-      title: 'Database Analyzer',
-      description: 'Advanced database analysis and insight extraction tool for large-scale data processing.',
-      section: 'data-extraction',
-      status: 'active',
-      url: 'https://db-analyzer.company.com',
-      lastUpdated: '6 hours ago',
-      members: 11,
-      tags: ['Database', 'Analytics', 'Big Data']
-    },
+
 
     // Additional projects for "All Projects"
     {
-      id: 7,
-      title: 'Customer Insights AI',
-      description: 'Advanced analytics platform for customer behavior prediction and segmentation.',
+      id: 8,
+      title: 'Recruiter AI',
+      description: 'Intelligent recruitment platform for resume analysis, candidate matching, and hiring optimization.',
       section: 'other',
       status: 'active',
-      url: 'https://insights.company.com',
+      url: '/other/recruiterai',
       lastUpdated: '2 hours ago',
       members: 8,
-      tags: ['Analytics', 'ML', 'Customer Data']
+      tags: ['Recruitment', 'HR', 'AI Matching'],
+      previewImages: ['/Recruite-ai.png', '/Recruiteai-1.png','/Recruiterai-2.png','/Recruiterai-3.png']
     },
     {
-      id: 8,
-      title: 'Content Generator Pro',
-      description: 'AI-powered content creation tool for marketing campaigns and social media.',
+      id: 9,
+      title: 'Immigration Extractor',
+      description: 'Automated extraction and processing of immigration documents and student information.',
       section: 'other',
       status: 'active',
-      url: 'https://content.company.com',
-      lastUpdated: '1 day ago',
+      url: '/other/immigration',
+      lastUpdated: '3 hours ago',
+      members: 6,
+      tags: ['Immigration', 'Document Processing', 'Data Extraction'],
+      previewImages: ['/Immigration_ui.png']
+    },
+    {
+      id: 10,
+      title: 'VoiceBot - CloudTutor',
+      description: 'Real-time AI voice assistant powered by Gemini 2.5 Live for Google Cloud Platform tutoring with Indian English accent.',
+      section: 'other',
+      status: 'active',
+      url: '/other/voicebot',
+      lastUpdated: '1 hour ago',
       members: 5,
-      tags: ['Content', 'NLP', 'Marketing']
+      tags: ['Voice AI', 'Gemini Live', 'Education', 'Real-time'],
+      previewImages: ['/Voicbotai.png']
     }
   ];
 
@@ -160,18 +133,16 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{ 
-          transform: 'translateZ(0)', // Force hardware acceleration
-          willChange: 'width' // Optimize for width changes
+          transform: 'translate3d(0, 0, 0)', // Force hardware acceleration and prevent shifts
+          willChange: 'width', // Optimize for width changes
+          backfaceVisibility: 'hidden' // Prevent flickering
         }}
       >
         <div className="p-3 pt-6 h-full">
           <div className="space-y-3">
-            {sections.map((section, index) => (
-              <motion.button
+            {sections.map((section) => (
+              <button
                 key={section.id}
-                initial={false} // Prevent initial animation on mount
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
                 onClick={() => setActiveSection(section.id)}
                 className={`w-full flex items-center rounded-xl transition-all duration-200 ${
                   activeSection === section.id
@@ -199,7 +170,7 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
                      section.id === 'data-extraction' ? projects.filter(p => p.section === 'data-extraction').length : 0} projects
                   </p>
                 </div>
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>
@@ -210,37 +181,36 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
         <div className="h-full overflow-y-auto">
           <div className="p-4">
             {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {filteredProjects.map((project, index) => (
-                <motion.div
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {filteredProjects.map((project) => (
+                <ProjectCard 
                   key={project.id}
-                  initial={false} // Prevent layout shift on mount
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                >
-                  <ProjectCard 
-                    project={project}
-                  />
-                </motion.div>
+                  project={project}
+                  onProjectClick={setSelectedProject}
+                />
               ))}
             </div>
 
             {filteredProjects.length === 0 && (
-              <motion.div
-                initial={false}
-                animate={{ opacity: 1 }}
-                className="text-center py-12"
-              >
+              <div className="text-center py-12">
                 <div className="text-gray-400 mb-4">
                   <FolderOpen className="w-16 h-16 mx-auto" />
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No projects found</h3>
                 <p className="text-gray-500">No projects available for the selected section.</p>
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
       </div>
+      
+      {/* Project Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </>
   );
 };

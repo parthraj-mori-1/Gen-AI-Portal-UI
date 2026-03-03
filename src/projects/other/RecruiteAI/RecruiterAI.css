@@ -1,0 +1,138 @@
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.3); border-radius: 3px; }
+
+.recruiter-ai-container {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#main-content {
+  overflow-y: auto;
+  height: 100vh;
+  min-width: 0;
+  background: linear-gradient(to bottom right, #fafafa, #f0f0f0);
+}
+
+.glass-card {
+  background: rgb(255 255 255 / 5%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(to right, #34d399, #10b981);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-danger {
+  background: linear-gradient(to right, #f87171, #ef4444);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+}
+
+.loading-spinner {
+  border: 3px solid rgba(107, 33, 168, 0.2);
+  border-top: 3px solid #6b21a8;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.candidate-card {
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  background: white;
+}
+
+.candidate-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border-left-color: #6b21a8;
+}
+
+.match-badge {
+  background: linear-gradient(to right, #ecfdf5, #d1fae5);
+  color: #059669;
+}
+
+.dropzone {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px dashed rgba(107, 33, 168, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dropzone:hover:not(.disabled) {
+  border-color: #6b21a8;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.dropzone-active {
+  border-color: #6b21a8;
+  background: rgba(147, 51, 234, 0.05);
+}
+
+.dropzone.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(200, 200, 200, 0.5);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Bell, 
   LogOut, 
   User,
   ChevronDown,

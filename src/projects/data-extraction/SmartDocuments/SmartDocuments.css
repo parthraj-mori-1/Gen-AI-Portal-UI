@@ -1,0 +1,158 @@
+.smart-documents-app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%);
+  position: relative;
+}
+
+/* Background Pattern Overlay */
+.smart-documents-app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.smart-documents-header {
+  position: relative;
+  z-index: 10;
+  padding: 24px 32px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.smart-documents-logo-section {
+  margin-bottom: 20px;
+}
+
+.smart-documents-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: fit-content;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.smart-documents-logo-text {
+  display: block;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.smart-documents-logo-subtitle {
+  display: block;
+  color: #e0e7ff;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.smart-documents-navigation {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.smart-documents-nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.smart-documents-nav-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.smart-documents-nav-tab.active {
+  background: white;
+  color: #1e40af;
+  border-color: white;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
+}
+
+.smart-documents-nav-tab svg {
+  flex-shrink: 0;
+}
+
+.smart-documents-main-content {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 200px);
+  padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .smart-documents-header {
+    padding: 16px;
+  }
+
+  .smart-documents-logo {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .smart-documents-logo-text {
+    font-size: 20px;
+  }
+
+  .smart-documents-logo-subtitle {
+    font-size: 11px;
+  }
+
+  .smart-documents-navigation {
+    flex-direction: column;
+  }
+
+  .smart-documents-nav-tab {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .smart-documents-main-content {
+    padding: 12px;
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;
+    min-width: 120px;
+  }
+}
