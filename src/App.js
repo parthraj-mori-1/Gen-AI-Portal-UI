@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
@@ -15,13 +14,13 @@ import ImmigrationInfo from './projects/other/Immigration/immigrationinfo';
 import VoiceBot from './projects/other/VoiceBot/VoiceBot';
 import SmartDocuments from './projects/data-extraction/SmartDocuments/SmartDocuments';
 
-// Configure Amplify (you'll need to replace with your actual config)
+// Configure Amplify from environment variables
 const amplifyConfig = {
   Auth: {
     Cognito: {
-      region: 'ap-south-1', // Replace with your region
-      userPoolId: 'ap-south-1_sBSozx8RE', // Replace with your User Pool ID
-      userPoolClientId: '6ks7ck0huoeiqblvbd5ba4sume', // Replace with your App Client ID
+      region: process.env.REACT_APP_AWS_REGION,
+      userPoolId: process.env.REACT_APP_USER_POOL_ID,
+      userPoolClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID,
     }
   }
 };

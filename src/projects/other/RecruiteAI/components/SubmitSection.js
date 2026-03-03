@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import ReviewModal from './ReviewModal';
 
-const API_BASE = 'https://k2nk7twzmhibdtkvwzuxtproxu0fqlwa.lambda-url.ap-south-1.on.aws';
+const API_BASE = process.env.REACT_APP_RECRUITERAI_API_URL;
 
 const SubmitSection = ({
   selectedPriority,
