@@ -8,11 +8,14 @@ import './index.css';
 
 // Import project components
 import RecruiterAI from './projects/other/RecruiteAI/RecruiterAI';
-import DocumentIntelligence from './projects/data-extraction/DocumentIntelligence';
 import HealthcareReferral from './projects/healthcare/HealthcareReferrel/Homereferrel';
-import ImmigrationInfo from './projects/other/Immigration/immigrationinfo';
+import PatientSummary from './projects/healthcare/PatientSummary/PatientSummary';
+import MedicalAssistant from './projects/healthcare/MedicalAssistant/MedicalAssistant';
+import Health from './projects/healthcare/Health/Health';
+import SmartPolicy from './projects/transportation/SmartPolicy/SmartPolicy';
+import ImmigrationInfo from './projects/Education/Immigration/immigrationinfo';
 import VoiceBot from './projects/other/VoiceBot/VoiceBot';
-import SmartDocuments from './projects/data-extraction/SmartDocuments/SmartDocuments';
+import SmartDocuments from './projects/Education/SmartDocuments/SmartDocuments';
 
 // Configure Amplify from environment variables
 const amplifyConfig = {
@@ -24,7 +27,7 @@ const amplifyConfig = {
     }
   }
 };
-
+console.log(amplifyConfig);
 Amplify.configure(amplifyConfig);
 
 function App() {
@@ -44,15 +47,20 @@ function App() {
                   
                   {/* Healthcare Projects */}
                   <Route path="/healthcare/referral" element={<HealthcareReferral />} />
+                  <Route path="/healthcare/patient-summary" element={<PatientSummary />} />
+                  <Route path="/healthcare/medical-assistant" element={<MedicalAssistant />} />
+                  <Route path="/healthcare/health" element={<Health />} />
                   
                   {/* Data Extraction Projects */}
-                  <Route path="/data-extraction/document-intelligence" element={<DocumentIntelligence />} />
-                  <Route path="/data-extraction/smart-documents" element={<SmartDocuments />} />
+                  <Route path="/Education/smart-documents" element={<SmartDocuments />} />
                   
                   {/* Other Projects */}
                   <Route path="/other/recruiterai" element={<RecruiterAI />} />
-                  <Route path="/other/immigration" element={<ImmigrationInfo />} />
+                  <Route path="/Education/immigration" element={<ImmigrationInfo />} />
                   <Route path="/other/voicebot" element={<VoiceBot />} />
+
+                  {/* Transportation Projects */}
+                  <Route path="/transportation/smart-policy" element={<SmartPolicy />} />
                 </Routes>
               </Authenticator>
             </Authenticator.Provider>

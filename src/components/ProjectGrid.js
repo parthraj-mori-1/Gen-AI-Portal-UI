@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
-import { FolderOpen, Heart, Database } from 'lucide-react';
+import { FolderOpen, Heart, Database, GraduationCap, Truck } from 'lucide-react';
 
 const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
   const [activeSection, setActiveSection] = useState('all');
@@ -33,10 +33,10 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
     },
     {
       id: 'data-extraction',
-      name: 'Data Extraction',
-      icon: Database,
+      name: 'Education',
+      icon: GraduationCap,
       color: 'bg-blue-500',
-      description: 'Intelligent data processing and extraction'
+      description: 'Education and learning AI applications'
     },
     {
       id: 'other',
@@ -44,6 +44,13 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
       icon: Database,
       color: 'bg-blue-500',
       description: 'Intelligent data processing and extraction'
+    },
+    {
+      id: 'transportation',
+      name: 'Transportation',
+      icon: Truck,
+      color: 'bg-orange-500',
+      description: 'Transportation and logistics AI applications'
     }
   ];
 
@@ -62,6 +69,42 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
       tags: ['Healthcare', 'Processing', 'Automation'],
       previewImages: ['/Healthcare_ui.png', '/Healthcare-response.png']
     },
+    {
+      id: 2,
+      title: 'Patient Summary Generator',
+      description: 'Generate comprehensive patient discharge summaries in PDF format with secure data handling.',
+      section: 'healthcare',
+      status: 'active',
+      url: '/healthcare/patient-summary',
+      lastUpdated: '1 hour ago',
+      members: 6,
+      tags: ['Patient Care', 'PDF Generation', 'Discharge Summary'],
+      previewImages: ['/patient-summary-ui.png', '/patient-summary-pdf.png']
+    },
+    {
+      id: 3,
+      title: 'Medical Assistant',
+      description: 'AI-powered medical assistant for healthcare professionals with advanced diagnostic support and patient interaction.',
+      section: 'healthcare',
+      status: 'active',
+      url: '/healthcare/medical-assistant',
+      lastUpdated: '30 minutes ago',
+      members: 12,
+      tags: ['AI Assistant', 'Diagnostics', 'Medical Support', 'Patient Care'],
+      previewImages: ['/medical-assistant-ui.png', '/medical-assistant-chat.png']
+    },
+    {
+      id: 4,
+      title: 'Health Platform',
+      description: 'Comprehensive healthcare management system with integrated patient care, medical records, and health monitoring.',
+      section: 'healthcare',
+      status: 'active',
+      url: '/healthcare/health',
+      lastUpdated: '15 minutes ago',
+      members: 10,
+      tags: ['Healthcare Platform', 'Patient Management', 'Medical Records', 'Health Monitoring'],
+      previewImages: ['/health-platform-ui.png', '/health-dashboard.png']
+    },
     // Data Extraction Projects
     {
       id: 5,
@@ -69,7 +112,7 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
       description: 'AI-powered document analysis, validation, and automated application processing with real-time dashboard.',
       section: 'data-extraction',
       status: 'active',
-      url: '/data-extraction/smart-documents',
+      url: '/Education/smart-documents',
       lastUpdated: '1 hour ago',
       members: 8,
       tags: ['AI Processing', 'Validation', 'Document Analysis', 'Dashboard'],
@@ -96,7 +139,7 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
       description: 'Automated extraction and processing of immigration documents and student information.',
       section: 'other',
       status: 'active',
-      url: '/other/immigration',
+      url: '/Education/immigration',
       lastUpdated: '3 hours ago',
       members: 6,
       tags: ['Immigration', 'Document Processing', 'Data Extraction'],
@@ -113,6 +156,19 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
       members: 5,
       tags: ['Voice AI', 'Gemini Live', 'Education', 'Real-time'],
       previewImages: ['/Voicbotai.png']
+    },
+    // Transportation Projects
+    {
+      id: 11,
+      title: 'Smart Policy Processor',
+      description: 'AI-powered insurance policy document processor that extracts structured data from PDF policies including vehicle, customer, and premium details.',
+      section: 'transportation',
+      status: 'active',
+      url: '/transportation/smart-policy',
+      lastUpdated: '1 hour ago',
+      members: 5,
+      tags: ['Insurance', 'PDF Extraction', 'Policy Processing', 'Transportation'],
+      previewImages: []
     }
   ];
 
@@ -167,7 +223,8 @@ const ProjectGrid = ({ selectedSection, onSidebarToggle }) => {
                     {section.id === 'all' ? projects.length : 
                      section.id === 'healthcare' ? projects.filter(p => p.section === 'healthcare').length :
                      section.id === 'other' ? projects.filter(p => p.section === 'other').length :
-                     section.id === 'data-extraction' ? projects.filter(p => p.section === 'data-extraction').length : 0} projects
+                     section.id === 'data-extraction' ? projects.filter(p => p.section === 'data-extraction').length :
+                     section.id === 'transportation' ? projects.filter(p => p.section === 'transportation').length : 0} projects
                   </p>
                 </div>
               </button>
