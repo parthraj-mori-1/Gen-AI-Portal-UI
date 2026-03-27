@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
-import { LayoutGrid, Heart, GraduationCap, Database, Coins, ShieldCheck, Truck } from 'lucide-react';
+import { LayoutGrid, Heart, GraduationCap, Database, Coins, ShieldCheck } from 'lucide-react';
 
 const sections = [
   { id: 'all',            name: 'All Projects',  icon: LayoutGrid,    color: '#6366f1', bg: '#eef2ff' },

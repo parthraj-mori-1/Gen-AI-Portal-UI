@@ -6,20 +6,17 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import './index.css';
 
-// Import project components
 import RecruiterAI from './projects/other/RecruiteAI/RecruiterAI';
 import HealthcareReferral from './projects/healthcare/HealthcareReferrel/Homereferrel';
 import PatientSummary from './projects/healthcare/PatientSummary/PatientSummary';
 import MedicalAssistant from './projects/healthcare/MedicalAssistant/MedicalAssistant';
 import Health from './projects/healthcare/Health/Health';
 import SmartPolicy from './projects/transportation/SmartPolicy/SmartPolicy';
-import Security from './projects/other/Security/Security';
-import ConvoGenAI from './projects/other/ConvoGenAI/ConvoGenAI';
+import Security from './projects/Security/Security';
 import ImmigrationInfo from './projects/Education/Immigration/immigrationinfo';
 import VoiceBot from './projects/other/VoiceBot/VoiceBot';
 import SmartDocuments from './projects/Education/SmartDocuments/SmartDocuments';
 
-// Configure Amplify from environment variables
 const amplifyConfig = {
   Auth: {
     Cognito: {
@@ -29,8 +26,13 @@ const amplifyConfig = {
     }
   }
 };
+
 Amplify.configure(amplifyConfig);
-const ConvoGenAIRedirect = () => { window.location.replace('https://convogenai.operisoft.com/'); return null; };
+
+const ConvoGenAIRedirect = () => {
+  window.location.replace('https://convogenai.operisoft.com/');
+  return null;
+};
 
 function App() {
   return (
@@ -38,35 +40,22 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/login" element={<Login />} />
-          
-          {/* Protected Routes with Authentication */}
           <Route path="/*" element={
             <Authenticator.Provider>
               <Authenticator hideSignUp={true} variation="modal">
                 <Routes>
-                  {/* Dashboard */}
                   <Route path="/" element={<Dashboard />} />
-                  
-                  {/* Healthcare Projects */}
                   <Route path="/healthcare/referral" element={<HealthcareReferral />} />
                   <Route path="/healthcare/patient-summary" element={<PatientSummary />} />
                   <Route path="/healthcare/medical-assistant" element={<MedicalAssistant />} />
                   <Route path="/healthcare/health" element={<Health />} />
-                  
-                  {/* Data Extraction Projects */}
                   <Route path="/Education/smart-documents" element={<SmartDocuments />} />
-                  
-                  {/* Other Projects */}
                   <Route path="/other/recruiterai" element={<RecruiterAI />} />
                   <Route path="/Education/immigration" element={<ImmigrationInfo />} />
                   <Route path="/other/voicebot" element={<VoiceBot />} />
-
-                  {/* Transportation Projects */}
                   <Route path="/transportation/smart-policy" element={<SmartPolicy />} />
-
                   <Route path="/other/security" element={<Security />} />
-                  <Route path="/other/convogenai" element={<ConvoGenAI />} />
-                  <Route path="/other/security" element={<Security />} />
+                  <Route path="/other/convogenai" element={<ConvoGenAIRedirect />} />
                 </Routes>
               </Authenticator>
             </Authenticator.Provider>
