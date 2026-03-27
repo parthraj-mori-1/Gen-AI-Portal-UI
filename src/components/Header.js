@@ -24,7 +24,7 @@ const Header = ({ user, signOut }) => {
           <div className="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
             <Sparkles className="w-4 h-4 text-white" />
           </div>
-          <img src="/operisoft_title.png" alt="Operisoft" className="h-7 w-auto" />
+          <img src="/Operisoft_title.png" alt="Operisoft" className="h-7 w-auto" />
         </motion.div>
 
         {/* Center — Platform title */}

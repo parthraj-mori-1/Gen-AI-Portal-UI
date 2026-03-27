@@ -17,7 +17,7 @@ const Dashboard = () => {
           backgroundImage: "url('/bg-genai.jpeg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.12,
+          opacity: 0.3,
         }}
       />
 
