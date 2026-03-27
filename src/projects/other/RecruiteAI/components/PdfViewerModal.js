@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'https://k2nk7twzmhibdtkvwzuxtproxu0fqlwa.lambda-url.ap-south-1.on.aws';
+const API_BASE = process.env.REACT_APP_RECRUITERAI_API_URL || 'https://k2nk7twzmhibdtkvwzuxtproxu0fqlwa.lambda-url.ap-south-1.on.aws';
 
 const PdfViewerModal = ({ isOpen, onClose, candidate }) => {
   const [pdfUrl, setPdfUrl] = useState(null);

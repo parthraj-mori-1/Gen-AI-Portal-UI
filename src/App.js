@@ -13,6 +13,8 @@ import PatientSummary from './projects/healthcare/PatientSummary/PatientSummary'
 import MedicalAssistant from './projects/healthcare/MedicalAssistant/MedicalAssistant';
 import Health from './projects/healthcare/Health/Health';
 import SmartPolicy from './projects/transportation/SmartPolicy/SmartPolicy';
+import Security from './projects/other/Security/Security';
+import ConvoGenAI from './projects/other/ConvoGenAI/ConvoGenAI';
 import ImmigrationInfo from './projects/Education/Immigration/immigrationinfo';
 import VoiceBot from './projects/other/VoiceBot/VoiceBot';
 import SmartDocuments from './projects/Education/SmartDocuments/SmartDocuments';
@@ -27,8 +29,8 @@ const amplifyConfig = {
     }
   }
 };
-console.log(amplifyConfig);
 Amplify.configure(amplifyConfig);
+const ConvoGenAIRedirect = () => { window.location.replace('https://convogenai.operisoft.com/'); return null; };
 
 function App() {
   return (
@@ -61,6 +63,10 @@ function App() {
 
                   {/* Transportation Projects */}
                   <Route path="/transportation/smart-policy" element={<SmartPolicy />} />
+
+                  <Route path="/other/security" element={<Security />} />
+                  <Route path="/other/convogenai" element={<ConvoGenAI />} />
+                  <Route path="/other/security" element={<Security />} />
                 </Routes>
               </Authenticator>
             </Authenticator.Provider>

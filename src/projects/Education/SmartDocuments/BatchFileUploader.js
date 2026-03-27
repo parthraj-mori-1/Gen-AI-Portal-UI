@@ -31,7 +31,7 @@ const BatchFileUploader = ({ actorId }) => {
 
     try {
       // 1. Trigger API Gateway (Lambda 1) to register session and get URLs
-      const response = await fetch('https://s6ctgi38yi.execute-api.ap-south-1.amazonaws.com/dev/upload', {
+      const response = await fetch(`${process.env.REACT_APP_SMART_DOCS_API_URL || 'https://s6ctgi38yi.execute-api.ap-south-1.amazonaws.com/dev'}/upload`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

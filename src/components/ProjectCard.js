@@ -1,103 +1,75 @@
 import { motion } from 'framer-motion';
-import { 
-  ExternalLink
-} from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+
+const sectionConfig = {
+  healthcare:   { color: '#10b981', bg: '#ecfdf5', text: '#065f46', tagBg: '#d1fae5', label: 'Healthcare'    },
+  education:    { color: '#3b82f6', bg: '#eff6ff', text: '#1e40af', tagBg: '#dbeafe', label: 'Education'     },
+  transportation:{ color: '#f59e0b', bg: '#fffbeb', text: '#78350f', tagBg: '#fef3c7', label: 'Transportation'},
+  fintech:      { color: '#ec4899', bg: '#fdf2f8', text: '#831843', tagBg: '#fce7f3', label: 'Fintech'       },
+  other:        { color: '#8b5cf6', bg: '#f5f3ff', text: '#4c1d95', tagBg: '#ede9fe', label: 'Other'         },
+  security:     { color: '#64748b', bg: '#f1f5f9', text: '#1e293b', tagBg: '#e2e8f0', label: 'Security'      },
+};
 
 const ProjectCard = ({ project, onProjectClick }) => {
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'active':
-        return 'bg-green-100 text-green-800';
-      case 'development':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'beta':
-        return 'bg-blue-100 text-blue-800';
-      case 'maintenance':
-        return 'bg-gray-100 text-gray-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const getSectionColor = (section) => {
-    switch (section) {
-      case 'healthcare':
-        return 'bg-gradient-to-r from-green-400 to-emerald-500';
-      case 'data-extraction':
-        return 'bg-gradient-to-r from-blue-400 to-cyan-500';
-      case 'other':
-        return 'bg-gradient-to-r from-purple-400 to-pink-500';
-      default:
-        return 'bg-gradient-to-r from-gray-400 to-gray-500';
-    }
-  };
-
-  const handleProjectAccess = (e) => {
-    e.stopPropagation();
-    if (onProjectClick) {
-      onProjectClick(project);
-    }
-  };
-
-  const handleCardClick = () => {
-    if (onProjectClick) {
-      onProjectClick(project);
-    }
-  };
+  const cfg = sectionConfig[project.section] || sectionConfig.other;
 
   return (
     <motion.div
-      whileHover={{ y: -4 }}
-      className="card p-4 group transition-all duration-300 hover:border-primary-200 cursor-pointer h-full flex flex-col"
-      onClick={handleCardClick}
+      whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.10)' }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      onClick={() => onProjectClick(project)}
+      className="group bg-white rounded-2xl cursor-pointer flex flex-col"
+      style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #f0f0f0' }}
     >
-      {/* Project Header */}
-      <div className="mb-3">
-        <div className="flex items-center gap-2 mb-2">
-          <div className={`w-2 h-2 rounded-full ${getSectionColor(project.section)}`}></div>
-          <span className="text-xs font-medium text-gray-600 capitalize">
-            {project.section.replace('-', ' ')}
+      {/* Colored top accent bar */}
+      <div className="h-1 w-full rounded-t-2xl flex-shrink-0" style={{ background: cfg.color }} />
+
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        {/* Badge + status */}
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0" style={{ background: cfg.bg, color: cfg.text }}>
+            {cfg.label}
           </span>
-          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-            {project.status}
+          <span className={`text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 ${project.status === 'Active' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-500'}`}>
+            ● {project.status}
           </span>
         </div>
-        <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+
+        {/* Title */}
+        <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-gray-700 transition-colors line-clamp-2">
           {project.title}
         </h3>
-      </div>
 
-      {/* Project Description */}
-      <p className="text-gray-600 text-sm mb-3 flex-grow line-clamp-2">
-        {project.description}
-      </p>
+        {/* Description — fixed 2 lines */}
+        <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed">
+          {project.description}
+        </p>
 
-      {/* Project Tags */}
-      <div className="flex flex-wrap gap-1 mb-3">
-        {project.tags.slice(0, 3).map((tag, index) => (
-          <span
-            key={index}
-            className="px-2 py-0.5 bg-gray-100 text-gray-700 text-xs rounded"
+        {/* Tags — max 1 row, overflow hidden */}
+        <div className="flex flex-wrap gap-1.5 overflow-hidden" style={{ maxHeight: '1.75rem' }}>
+          {project.tags.slice(0, 3).map((tag, i) => (
+            <span key={i} className="text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap" style={{ background: cfg.tagBg, color: cfg.text }}>
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 3 && (
+            <span className="text-xs px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 whitespace-nowrap">
+              +{project.tags.length - 3}
+            </span>
+          )}
+        </div>
+
+        {/* Footer — always at bottom */}
+        <div className="flex items-center justify-end pt-2 border-t border-gray-50 mt-auto">
+          <motion.span
+            whileHover={{ x: 2 }}
+            className="flex items-center gap-0.5 text-xs font-semibold"
+            style={{ color: cfg.color }}
           >
-            {tag}
-          </span>
-        ))}
-        {project.tags.length > 3 && (
-          <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-xs rounded">
-            +{project.tags.length - 3}
-          </span>
-        )}
-      </div>
-
-      {/* Project Footer */}
-      <div className="flex items-center justify-end mt-auto">
-        <button
-          onClick={handleProjectAccess}
-          className="flex items-center gap-1 px-3 py-1.5 bg-primary-600 text-white text-xs rounded-lg hover:bg-primary-700 transition-colors"
-        >
-          <ExternalLink className="w-3 h-3" />
-          <span>View Details</span>
-        </button>
+            Open <ArrowUpRight className="w-3.5 h-3.5" />
+          </motion.span>
+        </div>
       </div>
     </motion.div>
   );

@@ -3,7 +3,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import { ArrowLeft, Truck, Upload, FileText, CheckCircle, AlertCircle, Loader, X } from 'lucide-react';
 
-const API_URL = 'https://k256ugqe2ncdqj2ywja7dso6tu0vsyre.lambda-url.ap-south-1.on.aws/';
+const API_URL = process.env.REACT_APP_SMART_POLICY_API_URL || 'https://k256ugqe2ncdqj2ywja7dso6tu0vsyre.lambda-url.ap-south-1.on.aws/';
 
 const SmartPolicy = () => {
   const { user } = useAuthenticator();
@@ -13,7 +13,7 @@ const SmartPolicy = () => {
   const [error, setError] = useState('');
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef(null);
-
+ 
   if (!user) return <Navigate to="/login" replace />;
 
   const handleFile = (f) => {
@@ -38,7 +38,6 @@ const SmartPolicy = () => {
     setError('');
     setResult(null);
 
-    console.log("How are you! beta")
 
     try {
       const arrayBuffer = await file.arrayBuffer();
