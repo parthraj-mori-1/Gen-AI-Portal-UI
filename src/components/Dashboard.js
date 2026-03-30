@@ -14,7 +14,7 @@ const Dashboard = () => {
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          backgroundImage: "url('/bg-genai.jpeg')",
+          backgroundImage: "url('/bg-genai.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: 0.3,

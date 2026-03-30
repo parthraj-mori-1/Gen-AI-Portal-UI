@@ -22,7 +22,7 @@ const inputSources = {
   '/other/recruiterai':           { type: 'link', label: 'Sample Resumes', value: [{ label: 'Resume-I', url: 'https://workdrive.operisoft.com/external/ca0fa10145761f57d6c1c46605d2eac7cc371f3054d77e74bd0c9b8391ea5858' }, { label: 'Resume-II', url: 'https://workdrive.operisoft.com/external/6c6efc301a6b25bcd65ff671cb25c72dc1a66ea66bc69c65273da2b7104c790d' }] },
   '/other/voicebot':              { type: 'text', label: 'Sample Voice Prompt',    value: 'Explain the difference between Google Cloud Run and Google Kubernetes Engine. When should I use each one?' },
   '/transportation/smart-policy': { type: 'link', label: 'Sample PDF',    value: [{label:"Sample-I",url:"https://workdrive.operisoft.com/external/cd3b8a00eb2986dd3a64a242baaca4b87b37ce3ef720f34cca40eb2b4725101c"},{label:"Sample-II",url:"https://workdrive.operisoft.com/external/c004c812e253550906a6c69185416fbf581bfacf69183429ebbd6d0709988607"},{label:"Sample-III",url:"https://workdrive.operisoft.com/external/22bcf2dbb13f7e612d397c60ad343d0cb1cb77a1676cc28a4d12f0b41ca673ce"}] },
-  '/security':              { type: 'text', label: 'Aws Credential Role',   value: 'arn:aws:iam::540757658793:role/Aws-security-role' },
+  '/security':                    { type: 'text', label: 'Aws Credential Role',   value: 'arn:aws:iam::540757658793:role/Aws-security-role' },
   '/other/convogenai':            { type: 'link', label: 'Sample input files', value: [{label : 'Sample Pdf', url: 'https://workdrive.operisoft.com/external/81edadc8558df0dcd343292815a7fec43481a48e23cb41d60064ca7f29895396'},{label :'Sample Excel', url:'https://workdrive.operisoft.com/external/a5af8edc61f618d788b43ab0fbcd41fec3531f1f4969373760ef386edf10f338'}]},
 };
 
@@ -36,7 +36,7 @@ const projectResources = {
   '/other/recruiterai':           { docs: [{ label: 'Not Available', url: '' }],                                                                                                                                                                    recordings: [] },
   '/other/voicebot':              { docs: [{ label: 'Gemini API Docs', url: 'https://ai.google.dev/gemini-api/docs' }],                                                                                                                             recordings: [] },
   '/transportation/smart-policy': { docs: [{ label: 'Not Available', url: '' }],                                                                                                                                                                    recordings: [] },
-  '/security':              { docs: [{ label: 'Not Available', url: '' }],                                                                                                                                                                    recordings: [{ label: 'Demo Walkthrough', url: 'https://workdrive.operisoft.com/external/a40859852c01ef72f99c50ad187dcd7a8e4a21f9d9a6aeb4d8f561a572355b6c' }] },
+  '/security':              { docs: [{ label: 'Not Available', url: '' }], recordings: [{ label: 'Demo Walkthrough', url: 'https://workdrive.operisoft.com/external/a40859852c01ef72f99c50ad187dcd7a8e4a21f9d9a6aeb4d8f561a572355b6c' }] },
 
 };
 

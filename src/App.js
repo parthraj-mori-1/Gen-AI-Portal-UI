@@ -54,7 +54,7 @@ function App() {
                   <Route path="/Education/immigration" element={<ImmigrationInfo />} />
                   <Route path="/other/voicebot" element={<VoiceBot />} />
                   <Route path="/transportation/smart-policy" element={<SmartPolicy />} />
-                  <Route path="/other/security" element={<Security />} />
+                  <Route path="/security" element={<Security />} />
                   <Route path="/other/convogenai" element={<ConvoGenAIRedirect />} />
                 </Routes>
               </Authenticator>
