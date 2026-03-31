@@ -35,7 +35,7 @@ const Security = () => {
       {/* Embedded Security Platform */}
       <div className="h-[calc(100vh-64px)]">
         <iframe
-          src="http://15.207.40.144:7000"
+          src="https://medicalassistant.operisoft.com/Security"
           className="w-full h-full border-0"
           title="Security Platform"
           allow="camera; microphone; geolocation; encrypted-media"
