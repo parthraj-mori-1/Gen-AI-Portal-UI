@@ -4,6 +4,149 @@ import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import './immigration.css';
 
+const Field = ({ label, value }) => {
+  if (!value || value === ' ' || value === '') return null;
+  return (
+    <div style={{ padding: '8px 12px', background: '#f8fafc', borderRadius: 8, marginBottom: 4 }}>
+      <div style={{ fontSize: 11, color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</div>
+      <div style={{ fontSize: 13, fontWeight: 600, color: '#1e293b', marginTop: 2 }}>{value}</div>
+    </div>
+  );
+};
+
+const Section = ({ title, children }) => (
+  <div style={{ background: '#fff', borderRadius: 12, border: '1px solid #e2e8f0', marginBottom: 12, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 16px', background: '#f1f5f9', borderBottom: '1px solid #e2e8f0', fontWeight: 700, fontSize: 13, color: '#334155' }}>{title}</div>
+    <div style={{ padding: 12, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 6 }}>{children}</div>
+  </div>
+);
+
+const ApplicantCard = ({ applicant, index }) => {
+  const [expanded, setExpanded] = useState(false);
+  const a = applicant;
+  const info = a.applicant_info || {};
+  const contact = a.contact_information_info?.address || {};
+  const passports = Array.isArray(a.passport_info) ? a.passport_info : (a.passport_info ? [a.passport_info] : []);
+  const academics = a.academics_info || [];
+  const transcripts = a.transcript_certificate_info || [];
+  const insurance = Array.isArray(a.insurance_info) ? a.insurance_info : (a.insurance_info ? [a.insurance_info] : []);
+  const english = a.english_test_info || {};
+  const ausQual = Array.isArray(a.australian_qualification_info) ? a.australian_qualification_info : (a.australian_qualification_info ? [a.australian_qualification_info] : []);
+  const employment = a.employment_history || [];
+
+  return (
+    <div style={{ marginBottom: 16, border: '2px solid #6366f1', borderRadius: 16, overflow: 'hidden' }}>
+      {/* Clickable header */}
+      <button
+        onClick={() => setExpanded(!expanded)}
+        style={{ width: '100%', background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', padding: '14px 20px', color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+      >
+        <div style={{ textAlign: 'left' }}>
+          <div style={{ fontSize: 16, fontWeight: 700 }}>
+            {index === 0 ? '👤 Primary Applicant' : `👤 Applicant ${index + 1}`}: {info.firstname} {info.lastname}
+          </div>
+          <div style={{ fontSize: 12, opacity: 0.8, marginTop: 4 }}>DOB: {info.dateofbirth} · Gender: {info.gender}</div>
+        </div>
+        <span style={{ fontSize: 20, transition: 'transform 0.2s', transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+      </button>
+
+      {/* Scrollable content */}
+      {expanded && (
+        <div style={{ padding: 16, maxHeight: '60vh', overflowY: 'auto' }}>
+        {/* Contact */}
+        {contact.address && (
+          <Section title="📍 Address">
+            <Field label="Address" value={contact.address} />
+            <Field label="City" value={contact.city} />
+            <Field label="State" value={contact.state} />
+            <Field label="Country" value={contact.country} />
+            <Field label="Zip" value={contact.zipcode} />
+          </Section>
+        )}
+
+        {/* Passport */}
+        {passports.map((p, i) => (
+          <Section key={i} title={`🛂 Passport ${passports.length > 1 ? i + 1 : ''}`}>
+            <Field label="Passport No" value={p.passport_number} />
+            <Field label="Given Name" value={p.given_name} />
+            <Field label="Surname" value={p.surname} />
+            <Field label="DOB" value={p.dateofbirth} />
+            <Field label="Place of Birth" value={p.place_of_birth} />
+            <Field label="Place of Issue" value={p.place_of_issue} />
+            <Field label="Date of Issue" value={p.date_of_issue} />
+            <Field label="Date of Expiry" value={p.date_of_expiry} />
+          </Section>
+        ))}
+
+        {/* Academics */}
+        {academics.length > 0 && academics.some(ac => ac.qualification) && (
+          <Section title="🎓 Academic History">
+            {academics.filter(ac => ac.qualification).map((ac, i) => (
+              <div key={i} style={{ gridColumn: '1 / -1', background: '#f8fafc', borderRadius: 8, padding: '8px 12px', marginBottom: 4 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: '#1e293b' }}>{ac.qualification} — {ac.course_name}</div>
+                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>{ac.institution_name}, {ac.institution_country} · {ac.passing_month}/{ac.passing_year} · Grade: {ac.grade}</div>
+              </div>
+            ))}
+          </Section>
+        )}
+
+        {/* English Test */}
+        {english.test_type && (
+          <Section title="🗣️ English Test">
+            <Field label="Test Type" value={english.test_type} />
+            <Field label="Test Date" value={english.test_date} />
+            <Field label="Valid Until" value={english.valid_until_date || english.Valid_Until_date} />
+            <Field label="Overall Score" value={english.overall_result} />
+            <Field label="Listening" value={english.result?.listening} />
+            <Field label="Reading" value={english.result?.reading} />
+            <Field label="Writing" value={english.result?.writing} />
+            <Field label="Speaking" value={english.result?.speaking} />
+          </Section>
+        )}
+
+        {/* Insurance */}
+        {insurance.map((ins, i) => ins.provider_name && (
+          <Section key={i} title="🏥 Insurance">
+            <Field label="Type" value={ins.insurance_type} />
+            <Field label="Provider" value={ins.provider_name} />
+            <Field label="Policy No" value={ins.policy_no} />
+            <Field label="Policy Type" value={ins.policy_type} />
+            <Field label="Start Date" value={ins.policy_startdate} />
+            <Field label="End Date" value={ins.policy_enddate} />
+          </Section>
+        ))}
+
+        {/* Australian Qualification */}
+        {ausQual.map((aq, i) => aq.provider && (
+          <Section key={i} title="🇦🇺 Australian Qualification">
+            <Field label="Provider" value={aq.provider} />
+            <Field label="Course" value={aq.course} />
+            <Field label="Level" value={aq.course_level} />
+            <Field label="Start Date" value={aq.course_startdate} />
+            <Field label="End Date" value={aq.course_enddate} />
+            <Field label="Total Tuition Fee" value={aq.total_tuition_fee} />
+          </Section>
+        ))}
+
+        {/* Employment */}
+        {employment.length > 0 && employment.some(e => e.employer_name?.trim()) && (
+          <Section title="💼 Employment History">
+            {employment.filter(e => e.employer_name?.trim()).map((e, i) => (
+              <div key={i} style={{ gridColumn: '1 / -1', background: '#f8fafc', borderRadius: 8, padding: '8px 12px', marginBottom: 4 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, color: '#1e293b' }}>{e.position} — {e.employer_name}</div>
+                <div style={{ fontSize: 12, color: '#64748b', marginTop: 2 }}>
+                  {e.joining_month}/{e.joining_year} → {e.resignation_month || e['resignation-month']}/{e.resignation_year || e['resignation-year']}
+                </div>
+              </div>
+            ))}
+          </Section>
+        )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ImmigrationExtractor = () => {
   const { user } = useAuthenticator();
   const [s3Path, setS3Path] = useState(
@@ -126,7 +269,9 @@ const ImmigrationExtractor = () => {
           </p>
         </div>
 
-        {/* Input Section */}
+        {/* Input Section — hide when result shown */}
+        {!result && (
+          <>
         <div className="input-section">
           <div className="input-header">
             <label htmlFor="s3-input" className="input-label">
@@ -226,48 +371,42 @@ const ImmigrationExtractor = () => {
             </div>
           </div>
         )}
+          </>
+        )}
 
         {/* Results Section */}
         {result && (
           <div className="results-section">
+            {/* New Extraction button */}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
+              <button
+                onClick={() => { setResult(null); setJobId(''); setStatusMessages([]); setError(''); setAttempts(0); }}
+                className="submit-button"
+                style={{ width: 'auto', padding: '10px 24px' }}
+                type="button"
+              >
+                🔄 New Extraction
+              </button>
+            </div>
             <div className="results-header">
               <div className="results-title-wrapper">
                 <span className="results-icon">🎉</span>
                 <h3 className="results-title">Extraction Complete</h3>
               </div>
-              <button
-                className="toggle-results-btn"
-                onClick={() => setShowResult(!showResult)}
-                type="button"
-              >
+              <button className="toggle-results-btn" onClick={() => setShowResult(!showResult)} type="button">
                 {showResult ? '👁️ Hide' : '👁️‍🗨️ Show'} Details
               </button>
             </div>
 
             {showResult && (
               <div className="results-content">
-                <div className="results-summary">
-                  <div className="summary-item">
-                    <span className="summary-label">Status:</span>
-                    <span className="summary-value success">Completed</span>
-                  </div>
-                  <div className="summary-item">
-                    <span className="summary-label">Job ID:</span>
-                    <span className="summary-value">{jobId}</span>
-                  </div>
-                  {result.student_count && (
-                    <div className="summary-item">
-                      <span className="summary-label">Students Processed:</span>
-                      <span className="summary-value">{result.student_count}</span>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="results-data">
-                  <h4 className="data-title">📊 Extracted Data</h4>
-                  <pre className="data-json">
-                    {JSON.stringify(result, null, 2)}
-                  </pre>
+                {(Array.isArray(result) ? result : [result]).map((applicant, idx) => (
+                  <ApplicantCard key={idx} applicant={applicant} index={idx} />
+                ))}
+                {/* Raw JSON */}
+                <div style={{ marginTop: 16 }}>
+                  <h4 className="data-title">📊 Raw JSON</h4>
+                  <pre className="data-json">{JSON.stringify(result, null, 2)}</pre>
                 </div>
               </div>
             )}
