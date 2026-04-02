@@ -16,8 +16,8 @@ const Dashboard = () => {
   const [selectedValidationResults, setSelectedValidationResults] = useState(null);
 
   // API Configuration
-  const API_BASE_URL = process.env.REACT_APP_SMART_DOCS_API_URL || 'https://s6ctgi38yi.execute-api.ap-south-1.amazonaws.com/dev';
-
+  const API_BASE_URL = `${process.env.REACT_APP_SMART_DOCS_API_URL || 'https://1apxtau0t6.execute-api.ap-south-1.amazonaws.com/dev'}/application`;
+  
   const fetchDashboardData = React.useCallback(async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/dashboard/stats`);

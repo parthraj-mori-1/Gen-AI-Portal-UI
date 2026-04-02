@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [filterRecommendation, setFilterRecommendation] = useState('all');
 
   // API Configuration - Replace with your actual API Gateway URLs
-  const API_BASE_URL = 'https://s6ctgi38yi.execute-api.ap-south-1.amazonaws.com/dev';
+  const API_BASE_URL = 'https://1apxtau0t6.execute-api.ap-south-1.amazonaws.com/dev/application';
   useEffect(() => {
     fetchDashboardData();
     fetchApplications();
