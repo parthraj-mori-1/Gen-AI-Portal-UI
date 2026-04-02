@@ -25,7 +25,7 @@ const HomeReferralPage = () => {
   };
 
   const handleAddSample = () => {
-    setS3Paths('s3://chartmate-idp-deployment-1/inbound+15.pdf\ns3://chartmate-idp-deployment-1/8df068b1-1fab-48e1-83bb-884f92267cb7.pdf');
+    setS3Paths('s3://home-healthcare-referral/inbound+15.pdf\ns3://home-healthcare-referral/8df068b1-1fab-48e1-83bb-884f92267cb7.pdf');
   };
 
   const onSubmit = useCallback(() => {

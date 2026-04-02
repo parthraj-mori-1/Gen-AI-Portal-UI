@@ -13,7 +13,7 @@ const sectionConfig = {
 };
 
 const inputSources = {
-  '/healthcare/referral':         { type: 'text', label: 'Sample S3 Paths',        value: 's3://chartmate-idp-deployment-1/inbound+15.pdf\ns3://chartmate-idp-deployment-1/8df068b1-1fab-48e1-83bb-884f92267cb7.pdf' },
+  '/healthcare/referral':         { type: 'text', label: 'Sample S3 Paths',        value: 's3://home-healthcare-referral/inbound+15.pdf\ns3://home-healthcare-referral/8df068b1-1fab-48e1-83bb-884f92267cb7.pdf' },
   '/healthcare/patient-summary':  { type: 'text', label: 'Sample Patient ID',      value: 'P001\nP002\nP003' },
   '/healthcare/medical-assistant':{ type: 'text', label: 'Sample Query',           value: 'Hello, my son’s name is Stefen and he is 5 years old.He weighs approximately 18 kg and his height is around 108 cm.He has been experiencing a cough for the past 3–4 days, especially noticeable at night. The cough is dry in nature, with no mucus production. He also has a mild sore throat but no fever. His appetite is slightly reduced, and he feels a bit tired, but he is otherwise active.' },
   '/healthcare/health':           { type: 'text', label: 'Sample Query',           value: 'Summarize the health records for patient ID 10234 and flag any critical conditions.' },

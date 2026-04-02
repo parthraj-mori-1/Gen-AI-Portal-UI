@@ -44,7 +44,7 @@ const ImmigrationExtractor = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      console.log('Submit Response:', response);
+      // console.log('Submit Response:', response);
 
       if (response.status === 200) {
         setJobId(response.data);
