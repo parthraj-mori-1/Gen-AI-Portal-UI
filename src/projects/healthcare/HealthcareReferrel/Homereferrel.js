@@ -29,9 +29,9 @@ const HomeReferralPage = () => {
   };
 
   const onSubmit = useCallback(() => {
-    console.log('onSubmit called with s3Paths:', s3Paths);
-    console.log('s3Paths type:', typeof s3Paths);
-    console.log('s3Paths length:', s3Paths?.length);
+    // console.log('onSubmit called with s3Paths:', s3Paths);
+    // console.log('s3Paths type:', typeof s3Paths);
+    // console.log('s3Paths length:', s3Paths?.length);
     handleSubmit(s3Paths);
   }, [s3Paths, handleSubmit]);
 

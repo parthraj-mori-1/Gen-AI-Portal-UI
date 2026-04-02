@@ -42,7 +42,8 @@ const BatchFileUploader = ({ actorId }) => {
       });
 
       const { uploadUrls } = await response.json();
-      console.log(uploadUrls)
+      // console.log(uploadUrls)
+    
 
       // 2. Perform Parallel Uploads directly to S3
       setStatus(`Uploading ${files.length} files to S3 in parallel...`);
@@ -60,7 +61,7 @@ const BatchFileUploader = ({ actorId }) => {
       setStatus(`Success! All ${files.length} files uploaded to S3. Textract processing started.`);
       
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setStatus('Upload failed. Please try again.');
     } finally {
       setIsUploading(false);

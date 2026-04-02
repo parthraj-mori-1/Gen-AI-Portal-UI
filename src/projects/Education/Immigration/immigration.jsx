@@ -28,8 +28,8 @@ const ImmigrationExtractor = () => {
     const SUBMIT_URL = process.env.REACT_APP_IMMIGRATION_SUBMIT_URL || 
       'https://ol9jaj3n8e.execute-api.ap-south-1.amazonaws.com/Stage/requestapi';
 
-    console.log('Immigration Submit URL:', SUBMIT_URL);
-    console.log('S3 Path:', s3Path);
+    // console.log('Immigration Submit URL:', SUBMIT_URL);
+    // console.log('S3 Path:', s3Path);
 
     setIsSubmitting(true);
     setError('');

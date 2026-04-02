@@ -72,7 +72,7 @@ const PatientSummary = () => {
 
     try {
       const pdfUrl = `${API_BASE}/summary/${selectedPatient}/pdf`;
-      console.log('Downloading PDF from:', pdfUrl);
+      // console.log('Downloading PDF from:', pdfUrl);
       
       const response = await axios.get(pdfUrl, {
         responseType: 'blob',

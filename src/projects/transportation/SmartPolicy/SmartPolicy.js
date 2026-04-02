@@ -48,9 +48,9 @@ const SmartPolicy = () => {
       });
 
     //   if (!response.ok) throw new Error(`Server error: ${response.status}`);
-      console.log("Okay !",response)
+      // console.log("Okay !",response)
       const data = await response.json();
-      console.log(data)
+      // console.log(data)
       setResult(data);
     } catch (err) {
       setError(err.message || 'Failed to process the document.');

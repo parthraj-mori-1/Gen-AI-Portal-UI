@@ -36,7 +36,7 @@ const PdfViewerModal = ({ isOpen, onClose, candidate }) => {
     setError(null);
     
     try {
-      console.log('Loading PDF for:', candidate.filename);
+      // console.log('Loading PDF for:', candidate.filename);
       
       let resolvedUrl = null;
       

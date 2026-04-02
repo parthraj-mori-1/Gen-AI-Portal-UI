@@ -16,9 +16,10 @@ const useReferralJob = () => {
     'https://qtx7687ep4.execute-api.us-east-1.amazonaws.com/Stage/responseapi';
 
   const handleSubmit = async (s3Paths) => {
-    console.log('handleSubmit called with:', s3Paths);
-    console.log('Type of s3Paths:', typeof s3Paths);
+    // console.log('handleSubmit called with:', s3Paths);
+    // console.log('Type of s3Paths:', typeof s3Paths);
     
+
     if (!s3Paths) {
       setError('Please enter at least one S3 path.');
       return;
@@ -29,8 +30,8 @@ const useReferralJob = () => {
       .map(line => line.trim())
       .filter(Boolean);
 
-    console.log('Parsed links:', links);
-    console.log('Number of links:', links.length);
+    // console.log('Parsed links:', links);
+    // console.log('Number of links:', links.length);
 
     if (links.length === 0) {
       setError('Please enter at least one S3 path.');
@@ -42,8 +43,8 @@ const useReferralJob = () => {
     setJobId(null);
     setStatus(null);
 
-    console.log('Making API call to:', SUBMIT_API_URL);
-    console.log('With payload:', { links });
+    // console.log('Making API call to:', SUBMIT_API_URL);
+    // console.log('With payload:', { links });
 
     try {
       const response = await axios.post(
@@ -52,7 +53,7 @@ const useReferralJob = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      console.log('API Response:', response);
+      // console.log('API Response:', response);
 
       if (response.status === 200) {
         setJobId(response.data.job_id);

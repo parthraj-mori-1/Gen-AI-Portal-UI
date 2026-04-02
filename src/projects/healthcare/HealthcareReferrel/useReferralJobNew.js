@@ -12,8 +12,8 @@ const useReferralJobNew = () => {
   const STATUS_API_URL = process.env.REACT_APP_HOMEHEALTH_STATUS_API_URL;
 
   const handleSubmit = async (s3PathsInput) => {
-    console.log('NEW handleSubmit called with:', s3PathsInput);
-    console.log('Type:', typeof s3PathsInput);
+    // console.log('NEW handleSubmit called with:', s3PathsInput);
+    // console.log('Type:', typeof s3PathsInput);
     
     if (!s3PathsInput || typeof s3PathsInput !== 'string') {
       setError('Please enter at least one S3 path.');
@@ -25,7 +25,7 @@ const useReferralJobNew = () => {
       .map(line => line.trim())
       .filter(Boolean);
 
-    console.log('Parsed links:', links);
+    // console.log('Parsed links:', links);
 
     if (links.length === 0) {
       setError('Please enter at least one S3 path.');
@@ -37,7 +37,7 @@ const useReferralJobNew = () => {
     setJobId(null);
     setStatus(null);
 
-    console.log('Making API call to:', SUBMIT_API_URL);
+    // console.log('Making API call to:', SUBMIT_API_URL);
 
     try {
       const response = await axios.post(
@@ -46,7 +46,7 @@ const useReferralJobNew = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      console.log('API Response:', response);
+      // console.log('API Response:', response);
 
       if (response.status === 200) {
         setJobId(response.data.job_id);
